@@ -15,12 +15,11 @@
 		<button id='working' onclick="work()" title='Answer some problems for a huge boost!'>Turbo boost!</button>
         <button onclick='ptsgen()' title='Everyone clicks this button at least 100 times.'>Click for points!</button>
         <button onclick='unhide("getautos");hide("btn")' title='Purchase bots to click for you! Highly recommended for late game. '>Buy some autoclickers</button>
-
+        <button id="selfupgrades" onclick='unhide("selfupgrade"); hide("btn")'>Purchase self upgrades</button>
         
     
-
     </div>
-        <ol id='getautos' hidden="hidden">
+        <ol id='getautos' class= 'upgrade'hidden="hidden">
             <div>
                 <button class="purchaseauto" id="buymetronome" onclick='buyauto("metronome")'>Purchase Metronome</button></div>
             <div>
@@ -55,6 +54,10 @@
                 <button onclick='unhide("btn");hide("getautos")'>Go back</button>
             </div>
             
+            
+        </ol>
+    
+        <ol id="selfupgrade" hidden='hidden' class='upgrade'>
             
         </ol>
     <div id='working' hidden='hidden'>

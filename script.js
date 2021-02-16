@@ -184,3 +184,4 @@ function ptsgen() {
     points += 1
 
 }
+
