@@ -28,13 +28,12 @@ class BuyAuto{
     }
     start(){
         let promise = Promise.resolve()
-        promise.then(function(){
-            setInterval(function(){
-                points += this.ptsper
-            }, this.interval)
-        })
+        promise.then(setInterval(() => {
+            points += this.ptsper
+        }, this.interval))
     }
 }
+
 
 //interval, cpi
 class BuyMetronome extends BuyAuto{
