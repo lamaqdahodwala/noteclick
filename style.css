@@ -1,0 +1,42 @@
+#getautos{
+    margin-left: 70%;   
+}
+
+.purchaseauto{
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+p{
+    color: white;
+}
+label{
+    color: white;
+}
+
+body{
+    background-color: grey;
+}
+button{
+    background-color: black;
+    color: white;
+    padding-left: 2px;
+    padding-top: 4px;
+    padding-right: 2px;
+    padding-bottom: 4px;
+    font-size: small;
+}
+button:hover{
+    background-color: white;
+    color: black;
+}
+
+#powerups{
+    margin-left: 80%;
+}
+
+#titlepower{
+    font-size: x-large;
+    font-family: sans-serif;
+    
+}

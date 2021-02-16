@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Noteclick</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="script.js">
+	</script>
+</head>
+
+<body onload='load()'>
+	<div id='btn'>
+        <p id='pointscarrier'></p>
+		<button id='working' onclick="work()" title='Answer some problems for a huge boost!'>Turbo boost!</button>
+        <button onclick='ptsgen()' title='Everyone clicks this button at least 100 times.'>Click for points!</button>
+        <button onclick='unhide("getautos");hide("btn")' title='Purchase bots to click for you! Highly recommended for late game. '>Buy some autoclickers</button>
+
+        
+    
+
+    </div>
+        <ol id='getautos' hidden="hidden">
+            <div>
+                <button class="purchaseauto" id="buymetronome" onclick='buyauto("metronome")'>Purchase Metronome</button></div>
+            <div>
+                <button class="purchaseauto" onclick='buyauto("band")'id="buyband">Purchase Band</button>
+            </div>
+            <div>
+                <button class="purchaseauto" id="buyorchestra" onclick='buyauto("orchestra")'>Purchase Orchestra</button>
+            </div>
+            <div>
+                <button class="purchaseauto" id='buyclassical' onclick='buyauto("classical")'>Hire a classical composer</button>
+            </div>
+            <div>
+                <button id="buyskrillex" class="purchaseauto" onclick='buyauto("skrillex")'>Buy out Skrillex</button>
+            </div>
+            <br><br>
+            <p>Choose how many of each auto you buy at once. </p>
+            
+           <br>
+
+           <input type="radio" id='per1' name='amount' value='1'  checked='checked'>
+           <label for="per1">1</label>
+
+           <br>
+           <input type="radio" name="amount" id="per10" value='10'>
+           <label for="per10">10</label>
+           
+           <br>
+            <input type="radio" name="amount" id="per100" value='100'>
+            <label for="per100">100</label>
+    
+            <div>
+                <button onclick='unhide("btn");hide("getautos")'>Go back</button>
+            </div>
+            
+            
+        </ol>
+    <div id='working' hidden='hidden'>
+        <audio id='16note' src='16thnote.wav'></audio>
+        <audio id='8note' src='eightnote.wav'></audio>
+        <audio id='1note' src='quarternote.wav'></audio>
+        <audio id='metronome' src='metronome.wav'></audio>
+        <audio src="click.mp3" id="click"></audio>
+        
+    </div>
+    <div id='container' hidden="hidden">
+        <div>
+        <button id='playagain' onclick="playagain()">Play again</button>
+        <p id='instructions'></p>
+        </div>
+        <div id='choice1cont'>
+            <p></p>
+            <button id='choice1' onclick='choice(1)'>Choice 1</button>
+            
+        </div>
+        <div id='choice2cont'>
+            <p></p>
+            <button id="choice2" onclick='choice(2)'>Choice 2</button>
+        </div>
+        <div id='choice3cont'>
+            <p></p>
+            <button id="choice3" onclick="choice(3)">Choice 3</button>
+        </div>
+
+    </div>
+  </body>
+</html>
