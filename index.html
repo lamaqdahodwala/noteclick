@@ -9,7 +9,7 @@
 	</script>
 </head>
 
-<body onload='load()'>
+<body onload='load()'> 
 	<div id='btn'>
         <p id='pointscarrier'></p>
 		<button id='working' onclick="work()" title='Answer some problems for a huge boost!'>Turbo boost!</button>
@@ -58,9 +58,15 @@
         </ol>
     
         <ol id="selfupgrade" hidden='hidden' class='upgrade'>
-            <button class="purchaseauto" id="upgradepower" onclick="upgrade('1.25')">Upgrade clicking power (*1.25)</button>
-            <button class="purchaseauto" id="upgradepower2" onclick='upgrade("2")'>Double clicking power</button>
-            <button class="purchaseauto" id="upgradepower3" onclick='upgrade("**2")'>Square clicking power</button>
+
+            <label for="num">Add this many clicks on upgrade (max 100 at a time): </label>
+            <input type="text" name="num" id="num">
+            <br>
+            <br>
+            <button id="submit" onclick='purchase()'>Purchase</button>
+            <br><br><br>
+            <button onclick='unhide("btn"); hide("selfupgrade")'>Go back</button>
+            
         </ol>
     <div id='working' hidden='hidden'>
         <audio id='16note' src='16thnote.wav'></audio>

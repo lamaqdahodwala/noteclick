@@ -1,11 +1,14 @@
 let points = Number(localStorage.getItem('points'))
 let staff = Array(localStorage.getItem('staff'))
+let clickpow = Number(localStorage.getItem('clickpow'))
+
 
 
 if (points == null){
     points = 0
     staff = []
-    
+    clickpow = 1
+
 }
 
 setInterval(() => {
@@ -13,6 +16,7 @@ setInterval(() => {
     e.innerHTML = "Points: " + points
     localStorage.setItem('points', points)
     localStorage.setItem('staff', staff)
+    localStorage.setItem('clickpow', clickpow)
 }, 3)
 
 
@@ -181,7 +185,27 @@ function choice(item) {
 }
 
 function ptsgen() { 
-    points += 1
+    let amount = clickpow
+    points += clickpow
 
 }
 
+function purchase(){
+    var value = Number(document.querySelector('#num').value)
+    var price = 10000*value
+    
+    if (value > 100){
+        alert("You can't buy that much at once! Max of 100 at a time")
+    } else if (value <= 0){
+        alert('You cant buy none!')
+    } else{
+        if (price > points){
+            diff = (price-points).toString()
+            alert("Grind up " + diff + " more points to buy this")
+        } else {
+            clickpow += value
+        }
+
+    }
+    
+}
