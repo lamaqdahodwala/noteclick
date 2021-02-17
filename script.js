@@ -2,8 +2,6 @@ let points = Number(localStorage.getItem('points'))
 let staff = Array(localStorage.getItem('staff'))
 let clickpow = Number(localStorage.getItem('clickpow'))
 
-
-
 if (points == null){
     points = 0
     staff = []

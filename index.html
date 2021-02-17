@@ -5,12 +5,13 @@
 	<meta name="viewport" content="width=device-width">
 	<title>Noteclick</title>
 	<link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="script.js">
 	</script>
 </head>
 
 <body onload='load()'> 
-	<div id='btn'>
+	<div id='btn' class='mainarea'>
         <p id='pointscarrier'></p>
 		<button id='working' onclick="work()" title='Answer some problems for a huge boost!'>Turbo boost!</button>
         <button onclick='ptsgen()' title='Everyone clicks this button at least 100 times.'>Click for points!</button>
@@ -19,7 +20,12 @@
         
     
     </div>
-        <ol id='getautos' class= 'upgrade'hidden="hidden">
+    <div id="beforeyougo" hidden='hidden'>
+        <p>Hey there! Wait a sec!</p>
+        <p>Before you go, you probably should check that Mr. V knows.</p>
+    </div>
+    <div id='getautos' class='mainarea' hidden='hidden'>
+        <ol>
             <div>
                 <button class="purchaseauto" id="buymetronome" onclick='buyauto("metronome")'>Purchase Metronome</button></div>
             <div>
@@ -56,8 +62,8 @@
             
             
         </ol>
-    
-        <ol id="selfupgrade" hidden='hidden' class='upgrade'>
+    <div id='selfupgrade' hidden='hidden' class='mainarea'>
+        <ol>
 
             <label for="num">Add this many clicks on upgrade (max 100 at a time): </label>
             <input type="text" name="num" id="num">
@@ -68,6 +74,7 @@
             <button onclick='unhide("btn"); hide("selfupgrade")'>Go back</button>
             
         </ol>
+    </div>
     <div id='working' hidden='hidden'>
         <audio id='16note' src='16thnote.wav'></audio>
         <audio id='8note' src='eightnote.wav'></audio>
@@ -76,7 +83,7 @@
         <audio src="click.mp3" id="click"></audio>
         
     </div>
-    <div id='container' hidden="hidden">
+    <div id='container' hidden="hidden" class='mainarea'>
         <div>
         <button id='playagain' onclick="playagain()">Play again</button>
         <p id='instructions'></p>
