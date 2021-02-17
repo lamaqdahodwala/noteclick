@@ -7,7 +7,7 @@ if (points == null){
     staff = []
     
 }
- 
+
 setInterval(() => {
     let e = document.getElementById('pointscarrier')
     e.innerHTML = "Points: " + points
