@@ -10,7 +10,7 @@
 	</script>
 </head>
 
-<body onload='load()'> 
+<body> 
 	<div id='btn' class='mainarea'>
         <p id='pointscarrier'></p>
 		<button id='working' onclick="work()" title='Answer some problems for a huge boost!'>Turbo boost!</button>
@@ -20,7 +20,10 @@
         
     
     </div>
-
+    <div id="beforeyougo" hidden='hidden'>
+        <p>Hey there! Wait a sec!</p>
+        <p>Before you go, you probably should check that Mr. V knows.</p>
+    </div>
     <div id='getautos' class='mainarea' hidden='hidden'>
         <ol>
             <div>
@@ -59,9 +62,8 @@
             
             
         </ol>
-    <div id='selfupgrade' hidden='hidden' class='mainarea'>
-        <ol>
-
+    </div>
+        <ol id='selfupgrade' hidden='hidden' class='mainarea'>
             <label for="num">Add this many clicks on upgrade (max 100 at a time): </label>
             <input type="text" name="num" id="num">
             <br>
@@ -71,7 +73,7 @@
             <button onclick='unhide("btn"); hide("selfupgrade")'>Go back</button>
             
         </ol>
-    </div>
+
     <div id='working' hidden='hidden'>
         <audio id='16note' src='16thnote.wav'></audio>
         <audio id='8note' src='eightnote.wav'></audio>

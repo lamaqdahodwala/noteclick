@@ -2,7 +2,6 @@ let points = Number(localStorage.getItem('points'))
 let staff = Array(localStorage.getItem('staff'))
 let clickpow = Number(localStorage.getItem('clickpow'))
 
-
 if (points == null){
     points = 0
     staff = []
@@ -174,10 +173,7 @@ function playagain() {
 }
 
 function load(){
-    var worker = new Worker('load.js')
-    worker.onmessage = function(event){
-        localStorage.getItem('points') = points
-    }
+    alert('kok')
 }
 function choice(item) {
     console.log()
