@@ -2,6 +2,35 @@ let points = Number(localStorage.getItem('points'))
 let staff = Array(localStorage.getItem('staff'))
 let clickpow = Number(localStorage.getItem('clickpow'))
 
+
+var hidden, visibilityChange;
+if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
+  hidden = "hidden";
+  visibilityChange = "visibilitychange";
+} else if (typeof document.msHidden !== "undefined") {
+  hidden = "msHidden";
+  visibilityChange = "msvisibilitychange";
+} else if (typeof document.webkitHidden !== "undefined") {
+  hidden = "webkitHidden";
+  visibilityChange = "webkitvisibilitychange";
+}
+
+function handlechange(){
+    if (document[hidden]){
+        document.title = 'urmomguy'
+    } else {
+        document.title='Noteclick'
+    }
+}
+
+if (typeof document.addEventListener === "undefined" || hidden === undefined) {
+    console.log("This demo requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.");
+  } else {
+    // Handle page visibility change
+    document.addEventListener(visibilityChange, handlechange, false);
+  
+  }
+
 if (points == null){
     points = 0
     staff = []
@@ -185,6 +214,7 @@ function ptsgen() {
 
 }
 
+
 function purchase(){
     var value = Number(document.querySelector('#num').value)
     var price = 10000*value
@@ -198,7 +228,10 @@ function purchase(){
             diff = (price-points).toString()
             alert("Grind up " + diff + " more points to buy this")
         } else {
-            clickpow += value
+            let x = confirm('You sure bro?')
+            if (x){
+                clickpow += value
+            }
         }
 
     }
