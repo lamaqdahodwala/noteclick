@@ -1,15 +1,38 @@
 let points = Number(localStorage.getItem('points'))
 let staff = Array(localStorage.getItem('staff'))
 let clickpow = Number(localStorage.getItem('clickpow'))
+let __name = String(localStorage.getItem('name'))
+
+if (__name == 'null') {
+    let __name = prompt('What is your name? First and last', '')
+    localStorage.setItem('name', __name)
+}
+
+if (points == "null"){
+    points = 0
+    staff = []
+    clickpow = 1
+}
+
+
+$(document).on("mouseleave", function(e) {
+    fetch('https://mod-server.lamaqdahodwala.repl.co/offline/' + __name)
+});
+
+$(document).on('mouseenter', function(e) {
+    fetch('https://mod-server.lamaqdahodwala.repl.co/online/' + __name)
+});
 
 
 var hidden, visibilityChange;
 if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
   hidden = "hidden";
   visibilityChange = "visibilitychange";
+
 } else if (typeof document.msHidden !== "undefined") {
   hidden = "msHidden";
   visibilityChange = "msvisibilitychange";
+
 } else if (typeof document.webkitHidden !== "undefined") {
   hidden = "webkitHidden";
   visibilityChange = "webkitvisibilitychange";
@@ -17,9 +40,9 @@ if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and 
 
 function handlechange(){
     if (document[hidden]){
-        document.title = 'urmomguy'
+        fetch('https://mod-server.lamaqdahodwala.repl.co/offline/' + __name)
     } else {
-        document.title='Noteclick'
+        fetch('https://mod-server.lamaqdahodwala.repl.co/online' + __name)
     }
 }
 
@@ -31,12 +54,7 @@ if (typeof document.addEventListener === "undefined" || hidden === undefined) {
   
   }
 
-if (points == null){
-    points = 0
-    staff = []
-    clickpow = 1
 
-}
 
 setInterval(() => {
     let e = document.getElementById('pointscarrier')
