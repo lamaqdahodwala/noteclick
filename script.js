@@ -5,7 +5,11 @@ let __name = String(localStorage.getItem('name'))
 
 if (__name == 'null') {
     let __name = prompt('What is your name? First and last', '')
+    while (__name.length < 3){
+        alert('Please don\'t use your initials. Type your full first and last name')
+    }
     localStorage.setItem('name', __name)
+    
 }
 
 if (points == "null"){
@@ -51,9 +55,7 @@ if (typeof document.addEventListener === "undefined" || hidden === undefined) {
   } else {
     // Handle page visibility change
     document.addEventListener(visibilityChange, handlechange, false);
-  
-  }
-
+}
 
 
 setInterval(() => {
