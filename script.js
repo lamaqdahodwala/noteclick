@@ -46,7 +46,7 @@ function handlechange(){
     if (document[hidden]){
         fetch('https://mod-server.lamaqdahodwala.repl.co/offline/' + __name)
     } else {
-        fetch('https://mod-server.lamaqdahodwala.repl.co/online' + __name)
+        fetch('https://mod-server.lamaqdahodwala.repl.co/online/' + __name)
     }
 }
 
