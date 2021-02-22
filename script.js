@@ -3,6 +3,20 @@ let staff = Array(localStorage.getItem('staff'))
 let clickpow = Number(localStorage.getItem('clickpow'))
 let __name = String(localStorage.getItem('name'))
 
+function getItem(type, key){
+    return type(localStorage.getItem(key))
+}
+
+
+
+let metronomes = getItem(Number, 'metronomes')
+let bands = getItem(Number, 'bands')
+let orchestras = getItem(Number, 'orchestras')
+let classicals = getItem(Number, 'classicals')
+let concerts = getItem(Number, 'concerts')
+let guitars = getItem(Number, "guitars")
+
+
 if (__name == 'null') {
     let __name = prompt('What is your name? First and last', '')
     while (__name.length < 3){
@@ -12,10 +26,12 @@ if (__name == 'null') {
     
 }
 
+
 if (points == "null"){
     points = 0
     staff = []
     clickpow = 1
+    metronomes, bands, orchestras, classicals, concerts, guitars = 0
 }
 
 
@@ -64,6 +80,13 @@ setInterval(() => {
     localStorage.setItem('points', points)
     localStorage.setItem('staff', staff)
     localStorage.setItem('clickpow', clickpow)
+    localStorage.setItem('metronomes', metronomes)
+    localStorage.setItem('bands', bands)
+    localStorage.setItem('orchestras', orchestras)
+    localStorage.setItem('classicals', classicals)
+    localStorage.setItem('concerts', concerts)
+    localStorage.setItem('guitars', guitars)
+    document.getElementById('current').innerHTML = 'Currently have ' + metronomes + ' metronomes, ' + bands + ' bands, ' + orchestras + ' orchestras, ' + classicals + ' classical composers, ' + concerts + ' concerts, and ' + guitars + ' guitars.'
 }, 3)
 
 
@@ -113,11 +136,34 @@ class BuySkrillexConcert extends BuyAuto{
     }
 }
 
+class ElectricGuitarShred extends BuyAuto{
+    constructor(){
+        super([0.1, 50, 200000])
+    }
+}
+
+
+function start(amount, cls){
+    for (var i = 0; i < amount; i++ ){
+        let auto = new cls()
+        auto.start()
+    }
+}
+
+start(metronomes, BuyMetronome)
+start(bands, BuyBand)
+start(orchestras, BuyOrchestra)
+start(classicals, BuyClassical)
+start(concerts, BuySkrillexConcert)
+start(guitars, ElectricGuitarShred)
+
+
 /*metronome, band, orchestra, classical, skrillex */
 function confirmation(cls){
     let amount = (document.querySelector('input[name="amount"]:checked').value)
     if (confirm('Are you sure you want to buy ' + String(amount) + ' of this?')){
-        if (points > cls.cost){
+        if (points > (cls.cost*amount)){
+
             return true;
         } else {
             alert("You cant buy this yet! You need " + ((cls.cost * amount) - points) + ' more points to buy!')
@@ -126,31 +172,68 @@ function confirmation(cls){
     }
     
 }
+
 function buyauto(name){
+    
     var auto;
     switch (name){
         case ('metronome'):
             auto = new BuyMetronome()
-            break
+            
+            break;
         case ('band'):
             auto = new BuyBand()
+            
             break;
         case ('orchestra'):
             auto = new BuyOrchestra()
+            
             break;
         case ('classical'):
             auto = new BuyClassical()
+            
             break;
         case ("skrillex"):
             auto = new BuySkrillexConcert()
+            
             break;
+        case ('guitar'):
+            auto = new ElectricGuitarShred()
+            
+            break;
+
     }
     
     let auto1 = auto
     if (confirmation(auto)){
+        let amount = (document.querySelector('input[name="amount"]:checked').value)
         alert('Thank you!')
-        points -= auto.cost
-        staff.push(auto)
+        for (var i = 0; i < amount; i++){
+            points -= auto.cost
+            staff.push(auto)
+            switch (auto.constructor.name){
+                case "BuyMetronome":
+                    metronomes ++
+                    break;
+                case "BuyBand":
+                    bands ++
+                    break;
+                case "BuyClassical":
+                    classicals ++
+                    break;
+                case "BuyOrchestra":
+                    orchestras ++
+                    break;
+                case "BuySkrillexConcert":
+                    
+                    concerts ++
+                    break;
+                case "ElectricGuitarShred":
+                    guitar ++
+                    break;
+            }
+        }
+        
         console.log(typeof(auto1))
         auto.start()
     }
@@ -193,39 +276,58 @@ function work() {
   }
 
   const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
-
-    metronome.play()
+  let correctseq = []
   const playeverything = async (ord) => {
+      let temp = []
     for (i of ord){
-        console.log(i.id)
         i.play()
-
+        temp.push(i.id)
         await sleep(1000)
     }
+    correctseq = temp
   }
   let x = document.getElementById('instructions')
+
   x.innerHTML = "Find the correct sequence of notes to earn points!"
 
-  document.body.appendChild(x)
   document.getElementById('container').hidden = false
 
   window.order = order
   window.playeverything = playeverything
-  window.playeverything(window.order)
+  
   window.metronome = metronome
+  window.correctseq = correctseq
+
   let correct = Math.floor(Math.random() * 3)
+  if (correct == 0){
+      correct = 1
+  }
   window.correct = correct
-}
-function playagain() {
-    window.metronome.play()
-  window.playeverything(window.order)
+  
+
+
 }
 
-function load(){
-    alert('kok')
+
+
+function playagain() {
+    window.metronome.play()
+    window.playeverything(window.order)
 }
+
+
+function checkifcorrect(num) {
+    if (num == window.correct) {
+        alert("nice! You got it correct!")
+    } else {
+        alert('That was incorrect... The correct answer was ' + window.correct)
+    }
+}
+
 function choice(item) {
-    console.log()
+    hide('container')
+    unhide('btn')
+    checkifcorrect(item)
 }
 
 function ptsgen() { 
@@ -251,6 +353,7 @@ function purchase(){
             let x = confirm('You sure bro?')
             if (x){
                 clickpow += value
+                points -= price
             }
         }
 

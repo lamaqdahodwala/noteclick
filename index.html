@@ -20,10 +20,17 @@
         
     
     </div>
+    <div>
+        <audio src="quarternote.wav" id="1note"></audio>
+        <audio src="eightnote.wav" id="8note"></audio>
+        <audio src="16thnote.wav" id="16note"></audio>
+        <audio src="metronome.wav" id="metronome"></audio>
+    </div>
     <div id='getautos' class='mainarea' hidden='hidden'>
         <ol>
             <div>
-                <button class="purchaseauto" id="buymetronome" onclick='buyauto("metronome")'>Purchase Metronome</button></div>
+                <button class="purchaseauto" id="buymetronome" onclick='buyauto("metronome")'>Purchase Metronome</button>
+            </div>
             <div>
                 <button class="purchaseauto" onclick='buyauto("band")'id="buyband">Purchase Band</button>
             </div>
@@ -36,6 +43,11 @@
             <div>
                 <button id="buyskrillex" class="purchaseauto" onclick='buyauto("skrillex")'>Buy out Skrillex</button>
             </div>
+            <div>
+                <button id="buyguitar" class="purchaseauto" onclick='buyauto("guitar")'>Learn guitar shredding</button>
+            </div>
+            <br>
+            <p id='current'></p>
             <br><br>
             <p>Choose how many of each auto you buy at once. </p>
             
@@ -70,32 +82,30 @@
             
         </ol>
 
-    <div id='working' hidden='hidden'>
-        <audio id='16note' src='16thnote.wav'></audio>
-        <audio id='8note' src='eightnote.wav'></audio>
-        <audio id='1note' src='quarternote.wav'></audio>
-        <audio id='metronome' src='metronome.wav'></audio>
-        <audio src="click.mp3" id="click"></audio>
-        
-    </div>
+
     <div id='container' hidden="hidden" class='mainarea'>
         <div>
-        <button id='playagain' onclick="playagain()">Play again</button>
         <p id='instructions'></p>
+        <button id='playagain' onclick="playagain()">Play (again)</button>
+        <br><br><br>
+    
         </div>
-        <div id='choice1cont'>
+        <span id='choice1cont'>
             <p></p>
-            <button id='choice1' onclick='choice(1)'>Choice 1</button>
+            <button class='choice'id='choice1' onclick='choice(1)'>Choice 1</button>
             
-        </div>
-        <div id='choice2cont'>
+        </span>
+        <span id='choice2cont'>
             <p></p>
-            <button id="choice2" onclick='choice(2)'>Choice 2</button>
-        </div>
-        <div id='choice3cont'>
+            <button class='choice' id="choice2" onclick='choice(2)'>Choice 2</button>
+        </span>
+        <span id='choice3cont'>
             <p></p>
-            <button id="choice3" onclick="choice(3)">Choice 3</button>
-        </div>
+            <button id="choice3" class='choice' onclick="choice(3)">Choice 3</button>
+        </span>
+        <br><br><br><br>
+
+        <button onclick='hide("container"); unhide("btn")'>Go back</button>
 
     </div>
     <p id='updatep'>Tell Mr. V for any updates you would like to see!</p>

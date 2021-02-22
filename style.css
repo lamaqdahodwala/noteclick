@@ -18,10 +18,14 @@ label{
 }
 
 #updatep{
-    margin-top: 42%;
+    margin-top: 33%;
     text-align: center;
     
 }
+
+
+
+
 
 body{
     background-color: grey;
@@ -47,5 +51,4 @@ button:hover{
 #titlepower{
     font-size: x-large;
     font-family: sans-serif;
-    
 }
