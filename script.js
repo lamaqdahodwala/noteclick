@@ -91,6 +91,7 @@ setInterval(() => {
     localStorage.setItem('concerts', concerts)
     localStorage.setItem('guitars', guitars)
     document.getElementById('current').innerHTML = 'Currently have ' + metronomes + ' metronomes, ' + bands + ' bands, ' + orchestras + ' orchestras, ' + classicals + ' classical composers, ' + concerts + ' concerts, and ' + guitars + ' guitars.'
+    document.getElementById('currentclickpow').innerHTML = 'Current points per click: ' + clickpow
 }, 3)
 
 
