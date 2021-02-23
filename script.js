@@ -170,13 +170,15 @@ function confirmation(cls){
         if (points > (cls.cost*amount)){
 
             return true;
+        } else if (amount == 'all'){
+            return true;
+        }
         } else {
             alert("You cant buy this yet! You need " + ((cls.cost * amount) - points) + ' more points to buy!')
             return false;
         }
     }
     
-}
 
 function buyauto(name){
     
