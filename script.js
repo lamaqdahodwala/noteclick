@@ -19,6 +19,7 @@ let orchestras = getItem(Number, 'orchestras')
 let classicals = getItem(Number, 'classicals')
 let concerts = getItem(Number, 'concerts')
 let guitars = getItem(Number, "guitars")
+let earthquakes = getItem(Number, 'earthquakes')
 
 
 if (__name == 'null') {
@@ -35,7 +36,7 @@ if (points == "null"){
     points = 0
     staff = []
     clickpow = 1
-    metronomes, bands, orchestras, classicals, concerts, guitars = 0
+    metronomes, bands, orchestras, classicals, concerts, guitars, earthquakes = 0
 }
 
 
@@ -90,7 +91,8 @@ setInterval(() => {
     localStorage.setItem('classicals', classicals)
     localStorage.setItem('concerts', concerts)
     localStorage.setItem('guitars', guitars)
-    document.getElementById('current').innerHTML = 'Currently have ' + metronomes + ' metronomes, ' + bands + ' bands, ' + orchestras + ' orchestras, ' + classicals + ' classical composers, ' + concerts + ' concerts, and ' + guitars + ' guitars.'
+    localStorage.setItem('earthquakes', earthquakes)
+    document.getElementById('current').innerHTML = 'Currently have ' + metronomes + ' metronomes, ' + bands + ' bands, ' + orchestras + ' orchestras, ' + classicals + ' classical composers, ' + concerts + ' concerts,  ' + guitars + ' guitars, and ' + earthquakes + ' 20-foot tall speakers'
     document.getElementById('currentclickpow').innerHTML = 'Current points per click: ' + clickpow
 }, 3)
 
@@ -144,6 +146,12 @@ class BuySkrillexConcert extends BuyAuto{
 class ElectricGuitarShred extends BuyAuto{
     constructor(){
         super([0.1, 50, 200000])
+    }
+}
+
+class EarthquakeBass extends BuyAuto{
+    constructor(){
+        super([0.05, 250, 10000000])
     }
 }
 
@@ -209,6 +217,10 @@ function buyauto(name){
             
             break;
 
+        case ('earthquake'):
+            auto = new EarthquakeBass()
+            break;
+
     }
     
     let auto1 = auto
@@ -235,6 +247,10 @@ function buyauto(name){
                     break;
                 case "ElectricGuitarShred":
                     guitars ++
+                    break;
+                
+                case "EarthquakeBass":
+                    earthquakes ++
                     break;
                 
             }
@@ -268,7 +284,9 @@ function buyauto(name){
                 case "ElectricGuitarShred":
                     guitars ++
                     break;
-            
+                case 'EarthquakeBass':
+                    earthquakes ++
+                    break;
             }
             auto.start()
         }
@@ -380,9 +398,7 @@ function purchase(){
     var value = Number(document.querySelector('#num').value)
     var price = 10000*value
     
-    if (value > 100){
-        alert("You can't buy that much at once! Max of 100 at a time")
-    } else if (value <= 0){
+    if (value <= 0){
         alert('You cant buy none!')
     } else{
         if (price > points){
