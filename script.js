@@ -166,7 +166,7 @@ start(guitars, ElectricGuitarShred)
 /*metronome, band, orchestra, classical, skrillex */
 function confirmation(cls){
     let amount = (document.querySelector('input[name="amount"]:checked').value)
-    if (confirm('Are you sure you want to buy ' + String(amount) + ' of this?')){
+    if (true){
         if (points > (cls.cost*amount)){
 
             return true;
