@@ -3,6 +3,10 @@ let staff = Array(localStorage.getItem('staff'))
 let clickpow = Number(localStorage.getItem('clickpow'))
 let __name = String(localStorage.getItem('name'))
 
+console.log('Heads up!')
+console.log('If you are trying to paste code in here, please don\'t. You are just going to ruin the fun for yourself.')
+
+
 function getItem(type, key){
     return type(localStorage.getItem(key))
 }
@@ -229,7 +233,7 @@ function buyauto(name){
                     concerts ++
                     break;
                 case "ElectricGuitarShred":
-                    guitar ++
+                    guitars ++
                     break;
             }
         }
