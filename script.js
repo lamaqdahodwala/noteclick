@@ -212,6 +212,37 @@ function buyauto(name){
     let auto1 = auto
     if (confirmation(auto)){
         let amount = (document.querySelector('input[name="amount"]:checked').value)
+        if (amount == 'all'){
+            while (points > auto.cost){
+                switch (auto.constructor.name){
+                case "BuyMetronome":
+                    metronomes ++
+                    break;
+                case "BuyBand":
+                    bands ++
+                    break;
+                case "BuyClassical":
+                    classicals ++
+                    break;
+                case "BuyOrchestra":
+                    orchestras ++
+                    break;
+                case "BuySkrillexConcert":
+                    
+                    concerts ++
+                    break;
+                case "ElectricGuitarShred":
+                    guitars ++
+                    break;
+                
+            }
+            auto.start()
+            points -= auto.cost
+            }
+
+        } else {
+
+        
         for (var i = 0; i < amount; i++){
             points -= auto.cost
             staff.push(auto)
@@ -235,11 +266,13 @@ function buyauto(name){
                 case "ElectricGuitarShred":
                     guitars ++
                     break;
+            
             }
+            auto.start()
         }
         
         console.log(typeof(auto1))
-        auto.start()
+        }
     }
 }
 
