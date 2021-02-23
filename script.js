@@ -211,7 +211,6 @@ function buyauto(name){
     let auto1 = auto
     if (confirmation(auto)){
         let amount = (document.querySelector('input[name="amount"]:checked').value)
-        alert('Thank you!')
         for (var i = 0; i < amount; i++){
             points -= auto.cost
             staff.push(auto)
