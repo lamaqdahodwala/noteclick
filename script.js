@@ -354,7 +354,7 @@ function purchase(){
             diff = (price-points).toString()
             alert("Grind up " + diff + " more points to buy this")
         } else {
-            let x = confirm('You sure bro?')
+            let x = true;
             if (x){
                 clickpow += value
                 points -= price
