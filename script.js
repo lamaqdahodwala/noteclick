@@ -13,6 +13,7 @@ function getItem(type, key){
 
 
 
+
 let metronomes = getItem(Number, 'metronomes')
 let bands = getItem(Number, 'bands')
 let orchestras = getItem(Number, 'orchestras')
@@ -20,7 +21,6 @@ let classicals = getItem(Number, 'classicals')
 let concerts = getItem(Number, 'concerts')
 let guitars = getItem(Number, "guitars")
 let earthquakes = getItem(Number, 'earthquakes')
-
 
 if (__name == 'null') {
     let __name = prompt('What is your name? First and last', '')
@@ -81,6 +81,8 @@ if (typeof document.addEventListener === "undefined" || hidden === undefined) {
 
 setInterval(() => {
     let e = document.getElementById('pointscarrier')
+    let len = points.toString().length
+    
     e.innerHTML = "Points: " + points
     localStorage.setItem('points', points)
     localStorage.setItem('staff', staff)
@@ -169,7 +171,7 @@ start(orchestras, BuyOrchestra)
 start(classicals, BuyClassical)
 start(concerts, BuySkrillexConcert)
 start(guitars, ElectricGuitarShred)
-
+start(earthquakes, EarthquakeBass)
 
 /*metronome, band, orchestra, classical, skrillex */
 function confirmation(cls){
@@ -291,7 +293,6 @@ function buyauto(name){
             auto.start()
         }
         
-        console.log(typeof(auto1))
         }
     }
 }
@@ -414,4 +415,11 @@ function purchase(){
 
     }
     
+}
+
+function purchaseall(){
+    while (points > 10000){
+        clickpow += 1
+        points -= 10000
+    }
 }
