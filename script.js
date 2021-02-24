@@ -75,8 +75,9 @@ window.onload = function(e){
     for (var i of buttons){
         i.addEventListener('mouseenter', function(){
             let audio = document.createElement('audio')
-            audio.src = 'selection.wav'
+            audio.src = 'hovering.wav'
             audio.play()
+            
         })
     }
 }
