@@ -70,17 +70,6 @@ $(document).on('mouseenter', function(e) {
     fetch('https://mod-server.lamaqdahodwala.repl.co/online/' + __name)
 });
 
-window.onload = function(e){
-    let buttons = document.getElementsByTagName("button")
-    for (var i of buttons){
-        i.addEventListener('mouseenter', function(){
-            let audio = document.createElement('audio')
-            audio.src = 'hovering.wav'
-            audio.play()
-            
-        })
-    }
-}
 var hidden, visibilityChange;
 if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
   hidden = "hidden";
