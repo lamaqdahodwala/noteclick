@@ -2,7 +2,12 @@ let points = Number(localStorage.getItem('points'))
 let staff = Array(localStorage.getItem('staff'))
 let clickpow = Number(localStorage.getItem('clickpow'))
 let __name = String(localStorage.getItem('name'))
+let rbonus = Number(localStorage.getItem('rbonus'))
+let rprice = Number(localStorage.getItem('rprice'))
 
+if (rprice == 'null'){
+    rprice = 100000000
+}
 console.log('Heads up!')
 console.log('If you are trying to paste code in here, please don\'t. You are just going to ruin the fun for yourself.')
 
@@ -13,14 +18,29 @@ function getItem(type, key){
 
 
 
-
+function resetAll(){
+    metronomes = 0
+    bands = 0
+    orchestras = 0
+    classicals = 0
+    guitars = 0
+    concerts = 0 
+    earthquakes = 0
+    clickpow = 1
+    points = 0 
+    alert(clickpow)
+    alert(metronomes)
+    window.location.reload(true)
+    points = 0
+    
+}
 let metronomes = getItem(Number, 'metronomes')
 let bands = getItem(Number, 'bands')
 let orchestras = getItem(Number, 'orchestras')
 let classicals = getItem(Number, 'classicals')
 let concerts = getItem(Number, 'concerts')
 let guitars = getItem(Number, "guitars")
-let earthquakes = getItem(Number, 'earthquakes')
+let earthquakes = getItem(Number, "earthquakes")
 
 if (__name == 'null') {
     let __name = prompt('What is your name? First and last', '')
@@ -37,6 +57,8 @@ if (points == "null"){
     staff = []
     clickpow = 1
     metronomes, bands, orchestras, classicals, concerts, guitars, earthquakes = 0
+    rbonus = 1
+    rprice = 100000000
 }
 
 
@@ -48,7 +70,16 @@ $(document).on('mouseenter', function(e) {
     fetch('https://mod-server.lamaqdahodwala.repl.co/online/' + __name)
 });
 
-
+window.onload = function(e){
+    let buttons = document.getElementsByTagName("button")
+    for (var i of buttons){
+        i.addEventListener('mouseenter', function(){
+            let audio = document.createElement('audio')
+            audio.src = 'selection.wav'
+            audio.play()
+        })
+    }
+}
 var hidden, visibilityChange;
 if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
   hidden = "hidden";
@@ -81,7 +112,7 @@ if (typeof document.addEventListener === "undefined" || hidden === undefined) {
 
 setInterval(() => {
     let e = document.getElementById('pointscarrier')
-    let len = points.toString().length
+    e.innerHTML = 'Points: ' + points + ', Rebirth bonus: ' + rbonus
     
     e.innerHTML = "Points: " + points
     localStorage.setItem('points', points)
@@ -94,8 +125,10 @@ setInterval(() => {
     localStorage.setItem('concerts', concerts)
     localStorage.setItem('guitars', guitars)
     localStorage.setItem('earthquakes', earthquakes)
+    localStorage.setItem('rbonus', rbonus)
+    localStorage.setItem('rprice', rprice)
     document.getElementById('current').innerHTML = 'Currently have ' + metronomes + ' metronomes, ' + bands + ' bands, ' + orchestras + ' orchestras, ' + classicals + ' classical composers, ' + concerts + ' concerts,  ' + guitars + ' guitars, and ' + earthquakes + ' 20-foot tall speakers'
-    document.getElementById('currentclickpow').innerHTML = 'Current points per click: ' + clickpow
+    document.getElementById('currentclickpow').innerHTML = 'Current points per click: ' + (clickpow*rbonus)
 }, 3)
 
 
@@ -112,7 +145,7 @@ class BuyAuto{
     start(){
         let promise = Promise.resolve()
         promise.then(setInterval(() => {
-            points += this.ptsper
+            points += (this.ptsper)*rbonus
         }, this.interval))
     }
 }
@@ -131,12 +164,12 @@ class BuyBand extends BuyAuto{
 }
 class BuyOrchestra extends BuyAuto{
     constructor(){
-        super([1,10, 10000])
+        super([0.8 ,10, 10000])
     }
 }
 class BuyClassical extends BuyAuto{
     constructor(){
-        super([0.5, 10, 22000])
+        super([0.5, 15, 22000])
     }
 }
 class BuySkrillexConcert extends BuyAuto{
@@ -340,7 +373,7 @@ function work() {
     for (i of ord){
         i.play()
         temp.push(i.id)
-        await sleep(1000)
+        await sleep(750)
     }
     correctseq = temp
   }
@@ -390,7 +423,7 @@ function choice(item) {
 
 function ptsgen() { 
     let amount = clickpow
-    points += clickpow
+    points += (clickpow*rbonus)
 
 }
 
@@ -423,3 +456,18 @@ function purchaseall(){
         points -= 10000
     }
 }
+
+function rebirth(){
+    if (rprice > points){
+        alert('You need ' + (rprice-points) + ' more points to rebirth')
+    } else {
+        if (confirm('This WILL reset everything you have. All your autos, points, and points per click will be lost.')){
+            if (confirm('Last chance to go back. This is irreversable.')){
+                resetAll()
+                rbonus += 0.5
+                rprice *= 1.5
+            }
+        }
+    }
+}
+
