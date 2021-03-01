@@ -28,8 +28,7 @@ function resetAll(){
     earthquakes = 0
     clickpow = 1
     points = 0 
-    alert(clickpow)
-    alert(metronomes)
+    
     window.location.reload(true)
     points = 0
     
@@ -41,6 +40,8 @@ let classicals = getItem(Number, 'classicals')
 let concerts = getItem(Number, 'concerts')
 let guitars = getItem(Number, "guitars")
 let earthquakes = getItem(Number, "earthquakes")
+
+
 
 if (__name == 'null') {
     let __name = prompt('What is your name? First and last', '')
