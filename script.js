@@ -103,9 +103,8 @@ if (typeof document.addEventListener === "undefined" || hidden === undefined) {
 
 setInterval(() => {
     let e = document.getElementById('pointscarrier')
-    e.innerHTML = 'Points: ' + points + ', Rebirth bonus: ' + rbonus
-    
-    e.innerHTML = "Points: " + points
+    e.innerHTML = 'Points: ' + points + ','    
+
     localStorage.setItem('points', points)
     localStorage.setItem('staff', staff)
     localStorage.setItem('clickpow', clickpow)
@@ -120,6 +119,7 @@ setInterval(() => {
     localStorage.setItem('rprice', rprice)
     document.getElementById('current').innerHTML = 'Currently have ' + metronomes + ' metronomes, ' + bands + ' bands, ' + orchestras + ' orchestras, ' + classicals + ' classical composers, ' + concerts + ' concerts,  ' + guitars + ' guitars, and ' + earthquakes + ' 20-foot tall speakers'
     document.getElementById('currentclickpow').innerHTML = 'Current points per click: ' + (clickpow*rbonus)
+    document.getElementById('bonuscarrier').innerHTML = rbonus + 'x Rebirth bonus'
 }, 3)
 
 
