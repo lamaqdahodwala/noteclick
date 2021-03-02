@@ -17,7 +17,8 @@ function getItem(type, key){
 }
 
 window.onload = function(){
-    if (localStorage.getItem('justrebirth') == true){
+    if ((localStorage.getItem('justrebirth')) == "true"){
+        
         localStorage.setItem('justrebirth', false)
         points = 0
     }
@@ -146,13 +147,13 @@ setInterval(() => {
     localStorage.setItem('guitarprice', guitarprice)
     localStorage.setItem('earthquakesprice', earthquakesprice)
 
-    metprice = metronomes * new BuyMetronome().cost
-    bandprice = bands * new BuyBand().cost
-    orchestraprice = orchestras * new BuyOrchestra().cost
-    classicalprice = classicals * new BuyClassical().cost
-    concertprice = concerts * new BuySkrillexConcert().cost
-    guitarprice = guitars * new ElectricGuitarShred().cost
-    earthquakesprice = earthquakes * new EarthquakeBass().cost
+    metprice = ((metronomes * 0.5) * new BuyMetronome().cost ) + new BuyMetronome().cost
+    bandprice = (bands * 0.5) * (new BuyBand().cost ) + new BuyBand().cost
+    orchestraprice = ((orchestras * 0.5) * new BuyOrchestra().cost ) + new BuyOrchestra().cost
+    classicalprice = ((classicals*0.5) * new BuyClassical().cost ) + new BuyClassical().cost
+    concertprice = ((concerts * 0.5) * new BuySkrillexConcert().cost ) + new BuySkrillexConcert().cost
+    guitarprice =( (guitars * 0.5) * new ElectricGuitarShred().cost ) + new ElectricGuitarShred().cost
+    earthquakesprice = ((earthquakes*0.5) * new EarthquakeBass().cost) + new EarthquakeBass().cost
 
     let prices = document.getElementsByClassName('priceitem')
     prices[0].innerHTML = metprice + ' points'
@@ -244,21 +245,29 @@ function confirmation(cls){
     let amount = (document.querySelector('input[name="amount"]:checked').value)
     if (true){
         var autoprice;
+
         switch (cls.constructor.name){
             case 'BuyMetronome':
                 autoprice = metprice
+                break;
             case 'BuyBand':
                 autoprice = bandprice
+                break;
             case 'BuyOrchestra':
                 autoprice = orchestraprice
+                break;
             case 'BuyClassical':
                 autoprice = classicalprice
+                break;
             case 'BuySkrillexConcert':
                 autoprice = concertprice
+                break;
             case 'ElectricGuitarShred':
                 autoprice = guitarprice
+                break;
             case "EarthquakeBass":
                 autoprice = earthquakesprice
+                break;
 
         }
         if (amount == 'all'){
@@ -278,34 +287,36 @@ function confirmation(cls){
 function buyauto(name){
     
     var auto;
+    var autoprice;
     switch (name){
         case ('metronome'):
             auto = new BuyMetronome()
-            
+            autoprice = metprice
             break;
         case ('band'):
             auto = new BuyBand()
-            
+            autoprice = bandprice
             break;
         case ('orchestra'):
             auto = new BuyOrchestra()
-            
+            autoprice = orchestraprice
             break;
         case ('classical'):
             auto = new BuyClassical()
-            
+            autoprice = classicalprice
             break;
         case ("skrillex"):
             auto = new BuySkrillexConcert()
-            
+            autoprice = concertprice
             break;
         case ('guitar'):
             auto = new ElectricGuitarShred()
-            
+            autoprice = guitarprice
             break;
 
         case ('earthquake'):
             auto = new EarthquakeBass()
+            autoprice = earthquakesprice
             break;
 
     }
@@ -314,42 +325,48 @@ function buyauto(name){
     if (confirmation(auto)){
         let amount = (document.querySelector('input[name="amount"]:checked').value)
         if (amount == 'all'){
-            while (points > auto.cost){
+            while (points > autoprice){
                 switch (auto.constructor.name){
                 case "BuyMetronome":
                     metronomes ++
+                    autoprice = metprice
                     break;
                 case "BuyBand":
                     bands ++
+                    autoprice = bandprice
                     break;
                 case "BuyClassical":
                     classicals ++
+                    autoprice = classicalprice
                     break;
                 case "BuyOrchestra":
                     orchestras ++
+                    autoprice = orchestraprice
                     break;
                 case "BuySkrillexConcert":
-                    
+                    autoprice = concertprice
                     concerts ++
                     break;
                 case "ElectricGuitarShred":
                     guitars ++
+                    autoprice = guitarprice
                     break;
                 
                 case "EarthquakeBass":
                     earthquakes ++
+                    autoprice = earthquakesprice
                     break;
                 
             }
             auto.start()
-            points -= auto.cost
+            points -= autoprice
             }
 
         } else {
 
         
         for (var i = 0; i < amount; i++){
-            points -= auto.cost
+            points -= auto.cost 
             staff.push(auto)
             switch (auto.constructor.name){
                 case "BuyMetronome":
@@ -516,7 +533,7 @@ function rebirth(){
         if (confirm('This WILL reset everything you have. All your autos, points, and points per click will be lost.')){
             if (confirm('Last chance to go back. This is irreversable.')){
                 resetAll()
-                rbonus += 0.5
+                rbonus += 1
                 rprice *= 1.5
             }
         }
