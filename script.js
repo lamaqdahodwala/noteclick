@@ -188,39 +188,39 @@ class BuyAuto{
 //interval, cpi
 class BuyMetronome extends BuyAuto{
     constructor(){
-        super([1,2, 100])   
+        super([1,2, 15])   
     }
 }
 class BuyBand extends BuyAuto{
     constructor(){
-        super([0.5,3, 1000])
+        super([0.5,3, 100])
     }
 }
 class BuyOrchestra extends BuyAuto{
     constructor(){
-        super([0.8 ,10, 10000])
+        super([0.8 ,10, 250])
     }
 }
 class BuyClassical extends BuyAuto{
     constructor(){
-        super([0.5, 15, 22000])
+        super([0.5, 15, 1000])
     }
 }
 class BuySkrillexConcert extends BuyAuto{
     constructor(){
-        super([0.25, 20, 75000])
+        super([0.25, 20, 10000])
     }
 }
 
 class ElectricGuitarShred extends BuyAuto{
     constructor(){
-        super([0.1, 50, 200000])
+        super([0.1, 50, 50000])
     }
 }
 
 class EarthquakeBass extends BuyAuto{
     constructor(){
-        super([0.05, 250, 10000000])
+        super([0.05, 250, 100000])
     }
 }
 
@@ -499,7 +499,7 @@ function ptsgen() {
 
 function purchase(){
     var value = Number(document.querySelector('#num').value)
-    var price = 10000*value
+    var price = 250*value
     
     if (value <= 0){
         alert('You cant buy none!')

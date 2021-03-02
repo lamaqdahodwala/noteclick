@@ -47,6 +47,9 @@ button{
     padding-right: 2px;
     padding-bottom: 4px;
     font-size: small;
+    transition-property: background, color;
+    transition-duration: 0.5s, 0.5s;
+    cursor: pointer;
 }
 button:hover{
     background-color: white;
