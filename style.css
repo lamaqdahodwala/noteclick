@@ -24,7 +24,16 @@ label{
 }
 
 
+.priceitem{
+    padding: 0px;
+    line-height: 17px;
+}
 
+#pricelist{
+    position: relative;
+    float: left;
+    margin-left: 65%
+}
 
 
 body{

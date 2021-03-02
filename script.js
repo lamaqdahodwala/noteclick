@@ -6,7 +6,7 @@ let rbonus = Number(localStorage.getItem('rbonus'))
 let rprice = Number(localStorage.getItem('rprice'))
 
 if (rprice == 'null'){
-    rprice = 100000000
+    rprice = 500000
 }
 console.log('Heads up!')
 console.log('If you are trying to paste code in here, please don\'t. You are just going to ruin the fun for yourself.')
@@ -16,9 +16,15 @@ function getItem(type, key){
     return type(localStorage.getItem(key))
 }
 
-
+window.onload = function(){
+    if (localStorage.getItem('justrebirth') == true){
+        localStorage.setItem('justrebirth', false)
+        points = 0
+    }
+}
 
 function resetAll(){
+    localStorage.setItem ('justrebirth', true)
     metronomes = 0
     bands = 0
     orchestras = 0
@@ -42,6 +48,13 @@ let guitars = getItem(Number, "guitars")
 let earthquakes = getItem(Number, "earthquakes")
 
 
+let metprice = getItem(Number, 'metprice')
+let bandprice = getItem(Number, 'bandprice')
+let orchestraprice =  getItem(Number, 'orchestraprice')
+let classicalprice=  getItem(Number, 'classicalprice')
+let concertprice = getItem(Number, 'concertprice')
+let guitarprice=  getItem(Number, 'guitarprice')
+let earthquakesprice = getItem(Number, 'earthquakesprice')
 
 if (__name == 'null') {
     let __name = prompt('What is your name? First and last', '')
@@ -101,6 +114,7 @@ if (typeof document.addEventListener === "undefined" || hidden === undefined) {
 }
 
 
+
 setInterval(() => {
     let e = document.getElementById('pointscarrier')
     e.innerHTML = 'Points: ' + points + ','    
@@ -121,6 +135,34 @@ setInterval(() => {
     document.getElementById('currentclickpow').innerHTML = 'Current points per click: ' + (clickpow*rbonus)
     document.getElementById('bonuscarrier').innerHTML = rbonus + 'x Rebirth bonus'
 }, 3)
+
+
+setInterval(() => {
+    localStorage.setItem('metprice', metprice)
+    localStorage.setItem('bandprice', bandprice)
+    localStorage.setItem('orchestraprice', orchestraprice)
+    localStorage.setItem('classicalprice', classicalprice)
+    localStorage.setItem('concertprice', concertprice)
+    localStorage.setItem('guitarprice', guitarprice)
+    localStorage.setItem('earthquakesprice', earthquakesprice)
+
+    metprice = metronomes * new BuyMetronome().cost
+    bandprice = bands * new BuyBand().cost
+    orchestraprice = orchestras * new BuyOrchestra().cost
+    classicalprice = classicals * new BuyClassical().cost
+    concertprice = concerts * new BuySkrillexConcert().cost
+    guitarprice = guitars * new ElectricGuitarShred().cost
+    earthquakesprice = earthquakes * new EarthquakeBass().cost
+
+    let prices = document.getElementsByClassName('priceitem')
+    prices[0].innerHTML = metprice + ' points'
+    prices[1].innerHTML = bandprice + ' points'
+    prices[2].innerHTML = orchestraprice + ' points'
+    prices[3].innerHTML = classicalprice + ' points'
+    prices[4].innerHTML = concertprice + ' points'
+    prices[5].innerHTML = guitarprice + ' points'
+    prices[6].innerHTML = earthquakesprice + ' points'
+})
 
 
 
@@ -201,19 +243,38 @@ start(earthquakes, EarthquakeBass)
 function confirmation(cls){
     let amount = (document.querySelector('input[name="amount"]:checked').value)
     if (true){
-        if (points > (cls.cost*amount)){
+        var autoprice;
+        switch (cls.constructor.name){
+            case 'BuyMetronome':
+                autoprice = metprice
+            case 'BuyBand':
+                autoprice = bandprice
+            case 'BuyOrchestra':
+                autoprice = orchestraprice
+            case 'BuyClassical':
+                autoprice = classicalprice
+            case 'BuySkrillexConcert':
+                autoprice = concertprice
+            case 'ElectricGuitarShred':
+                autoprice = guitarprice
+            case "EarthquakeBass":
+                autoprice = earthquakesprice
 
-            return true;
-        } else if (amount == 'all'){
+        }
+        if (amount == 'all'){
             return true;
         }
-        } else {
-            alert("You cant buy this yet! You need " + ((cls.cost * amount) - points) + ' more points to buy!')
-            return false;
+        if (points >= autoprice){
+            return true;
+        } else  if (points < (cls.cost * amount)){
+            let aud = document.createElement('audio')
+            aud.src = 'sounds/error.mp3'
+            aud.volume = 0.3
+            aud.play()
         }
     }
     
-
+}
 function buyauto(name){
     
     var auto;
@@ -450,7 +511,7 @@ function purchaseall(){
 
 function rebirth(){
     if (rprice > points){
-        alert('You need ' + (rprice-points) + ' more points to rebirth')
+        alert('You need ' + (rprice-points) + ' more points to rebirth (' + rprice + ' points)')
     } else {
         if (confirm('This WILL reset everything you have. All your autos, points, and points per click will be lost.')){
             if (confirm('Last chance to go back. This is irreversable.')){
