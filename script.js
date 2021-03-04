@@ -5,9 +5,7 @@ let __name = String(localStorage.getItem('name'))
 let rbonus = Number(localStorage.getItem('rbonus'))
 let rprice = Number(localStorage.getItem('rprice'))
 
-if (rprice == 'null'){
-    rprice = 500000
-}
+
 console.log('Heads up!')
 console.log('If you are trying to paste code in here, please don\'t. You are just going to ruin the fun for yourself.')
 
@@ -35,7 +33,6 @@ function resetAll(){
     earthquakes = 0
     clickpow = 1
     points = 0 
-    
     window.location.reload(true)
     points = 0
     
@@ -73,7 +70,8 @@ if (points == "null"){
     clickpow = 1
     metronomes, bands, orchestras, classicals, concerts, guitars, earthquakes = 0
     rbonus = 1
-    rprice = 100000000
+    rprice = 500000
+    
 }
 
 
