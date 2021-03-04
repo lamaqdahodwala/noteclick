@@ -64,7 +64,7 @@ if (__name == 'null') {
 }
 
 
-if (points == "null"){
+if (points == 0 && rbonus == 0){
     points = 0
     staff = []
     clickpow = 1
