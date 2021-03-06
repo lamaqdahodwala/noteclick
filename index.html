@@ -130,19 +130,24 @@
         <br><br><br>
     
         </div>
-        <span id='choice1cont'>
-            <p></p>
-            <button class='choice'id='choice1' onclick='choice(1)'>Choice 1</button>
-            
-        </span>
-        <span id='choice2cont'>
-            <p></p>
-            <button class='choice' id="choice2" onclick='choice(2)'>Choice 2</button>
-        </span>
-        <span id='choice3cont'>
-            <p></p>
-            <button id="choice3" class='choice' onclick="choice(3)">Choice 3</button>
-        </span>
+        <table id="choices">
+            <tr id='choice1cont'>
+                <td>
+                <button class='choice'id='choice1' onclick='choice(1)'>Choice 1</button>
+                </td>
+                
+            </tr>
+            <tr id='choice2cont'>
+                <td>
+                <button class='choice' id="choice2" onclick='choice(2)'>Choice 2</button>
+                </td>
+            </tr>
+            <tr id='choice3cont'>
+                <td>
+                <button id="choice3" class='choice' onclick="choice(3)">Choice 3</button>
+                </td>
+            </tr>
+        </table>
         <br><br><br><br>
 
         <button onclick='hide("container"); unhide("btn")'>Go back</button>

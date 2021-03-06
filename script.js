@@ -1,3 +1,11 @@
+let token = (localStorage.getItem('token'))
+if (token == null){
+    fetch('https://data-center.lamaqdahodwala.repl.co/generate')
+    .then(response => response.text())
+    .then(resp => localStorage.setItem('token', token))
+    .then(() => console.log(localStorage.getItem('token')))
+}
+
 let points = Number(localStorage.getItem('points'))
 let staff = Array(localStorage.getItem('staff'))
 let clickpow = Number(localStorage.getItem('clickpow'))
@@ -439,8 +447,9 @@ function work() {
       let temp = []
     for (i of ord){
         i.play()
+        console.log(i.id)
         temp.push(i.id)
-        await sleep(750)
+        await sleep(1000)
     }
     correctseq = temp
   }
@@ -448,20 +457,21 @@ function work() {
 
   x.innerHTML = "Find the correct sequence of notes to earn points!"
 
-  document.getElementById('container').hidden = false
+  document.getElementById('container').hidden = false 
 
   window.order = order
   window.playeverything = playeverything
   
-  window.metronome = metronome
-  window.correctseq = correctseq
+  	window.metronome = metronome
+  	window.correctseq = correctseq
 
-  let correct = Math.floor(Math.random() * 3)
-  if (correct == 0){
-      correct = 1
-  }
-  window.correct = correct
-  
+  	let correct = Math.floor(Math.random() * 3)
+  	if (correct == 0){
+    	correct = 1
+  	}
+  	window.correct = correct
+	
+
 
 
 }
